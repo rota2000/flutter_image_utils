@@ -4,7 +4,8 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class FlutterImageUtils {
-  static const MethodChannel _channel = const MethodChannel('flutter_image_utils');
+  static const MethodChannel _channel =
+      const MethodChannel('flutter_image_utils');
 
   /// Returns `Future<Uint8List>` that contains bytes of cropped image.
   ///

@@ -1,3 +1,9 @@
+## 0.1.0+2
+
+* Fixed description
+* Upgraded `image_picker` dev dependency
+* Formatted `flutter_image_utils.dart`
+
 ## 0.1.0+1
 
 * Fixed version in README
