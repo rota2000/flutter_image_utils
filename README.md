@@ -1,14 +1,47 @@
 # flutter_image_utils
 
-A new flutter plugin project.
+[![pub package](https://img.shields.io/pub/v/flutter_image_utils.svg?style=flat-square)](https://pub.dartlang.org/packages/flutter_image_utils)
 
-## Getting Started
+Crops image as native plugin, both iOS and Android
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Usage
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[Full example](https://github.com/vanelizarov/flutter_image_utils/blob/master/example/lib/main.dart)
+
+```yaml
+# pubspec.yaml
+
+dependencies:
+  flutter_image_utils: ^0.2.4
+```
+
+```dart
+// E.g. lib/main.dart
+
+import 'dart:typed_data';
+import 'package:flutter_image_utils/flutter_image_utils.dart';
+
+/* ... */
+
+final img = AssetImage('assets/some_image.jpg');
+final config = new ImageConfiguration();
+
+final key = await img.obtainKey(config);
+final data = await key.bundle.load(key.name);
+
+final imgBytes = data.buffer.asUint8List();
+
+// All other methods can be used same way
+final cropped = await FlutterImageCrop.cropImage(
+  imgBytes,
+  x: 0,
+  y: 0,
+  width: 50,
+  height: 50,
+  quality: 85,
+);
+
+/* ... */
+
+MemoryImage(Uint8List.fromList(cropped))
+```
