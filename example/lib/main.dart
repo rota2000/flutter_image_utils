@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       completer.complete(null);
       FlutterError.reportError(new FlutterErrorDetails(
         context: 'image load failed ',
-        library: 'flutter_image_crop',
+        library: 'flutter_image_utils',
         exception: exception,
         stack: stackTrace,
         silent: true,
@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('flutter_image_crop'),
+          title: const Text('flutter_image_utils'),
         ),
         body: SafeArea(
           child: SingleChildScrollView(

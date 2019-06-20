@@ -4,8 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class FlutterImageUtils {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_image_utils');
+  static const MethodChannel _channel = const MethodChannel('flutter_image_utils');
 
   /// Returns `Future<Uint8List>` that contains bytes of cropped image.
   ///
@@ -25,7 +24,7 @@ class FlutterImageUtils {
   /// ```dart
   /// import 'dart:typed_data';
   /// /* ... */
-  /// final cropped = await FlutterImageCrop.cropImage(
+  /// final cropped = await FlutterImageUtils.cropImage(
   ///   imgBytes,
   ///   x: 0,
   ///   y: 0,
@@ -95,7 +94,7 @@ class FlutterImageUtils {
   /// ```dart
   /// import 'dart:typed_data';
   /// /* ... */
-  /// final sized = await FlutterImageCrop.resizeImageToMax(
+  /// final sized = await FlutterImageUtils.resizeImageToMax(
   ///   imgBytes,
   ///   maxSize: 1200,
   ///   quality: 85,
@@ -148,7 +147,7 @@ class FlutterImageUtils {
   /// ```dart
   /// import 'dart:typed_data';
   /// /* ... */
-  /// final sized = await FlutterImageCrop.resizeImage(
+  /// final sized = await FlutterImageUtils.resizeImage(
   ///   imgBytes,
   ///   destWidth: 1200,
   ///   destWidth: 600,
@@ -206,7 +205,7 @@ class FlutterImageUtils {
   /// ```dart
   /// import 'dart:typed_data';
   /// /* ... */
-  /// final rotated = await FlutterImageCrop.rotateImage(
+  /// final rotated = await FlutterImageUtils.rotateImage(
   ///   imgBytes,
   ///   angle: 90,
   ///   quality: 85,

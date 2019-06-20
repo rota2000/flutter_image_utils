@@ -1,3 +1,7 @@
+## 0.1.0+3
+
+  * removed all `flutter_image_crop` and `FlutterImageCrop` occurences
+
 ## 0.1.0+2
 
 * Fixed description

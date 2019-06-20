@@ -1,6 +1,6 @@
 name: flutter_image_utils
 description: Flutter plugin for image cropping, resizing and rotation implemented in native languages both for iOS and Android
-version: 0.1.0+2
+version: 0.1.0+3
 author: vanelizarov<elizarov.vanya@gmail.com>
 homepage: https://github.com/vanelizarov/flutter_image_utils
 

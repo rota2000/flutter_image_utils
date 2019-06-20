@@ -12,7 +12,7 @@ Crops image as native plugin, both iOS and Android
 # pubspec.yaml
 
 dependencies:
-  flutter_image_utils: ^0.1.0+2
+  flutter_image_utils: ^0.1.0+3
 ```
 
 ```dart
@@ -32,7 +32,7 @@ final data = await key.bundle.load(key.name);
 final imgBytes = data.buffer.asUint8List();
 
 // All other methods can be used same way
-final cropped = await FlutterImageCrop.cropImage(
+final cropped = await FlutterImageUtils.cropImage(
   imgBytes,
   x: 0,
   y: 0,
