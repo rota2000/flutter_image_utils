@@ -6,23 +6,21 @@ import 'package:flutter/services.dart';
 class FlutterImageUtils {
   static const MethodChannel _channel = const MethodChannel('flutter_image_utils');
 
-  /// Returns `Future<List<int>>` that contains bytes of cropped image.
+  /// Returns `Future<Uint8List>` that contains bytes of cropped image.
   ///
-  /// The `x` and `y` params control the point from which the cropping
+  /// `x` and `y` params control the point from which the cropping
   /// will be performed.
   /// Must not be null or negative.
   ///
-  /// The `width` and `height` params control the width and the height
+  /// `width` and `height` params control the width and the height
   /// of the cropping rect. They can be more than width and height
   /// of the original image, in this case platfrom code will constrain them
   /// to maximum possible.
   /// Must not be null or negative.
   ///
-  /// The `quality` param controls the quality of the output image. Must be
-  /// postivie number between `0` and `100`.
+  /// `quality` param controls the quality of the output image. Must be
+  /// positive number between `0` and `100`.
   ///
-  /// To use result of this computation, e.g. in `MemoryImage`, conversion to
-  /// `Uint8List` must be performed:
   /// ```dart
   /// import 'dart:typed_data';
   /// /* ... */
@@ -35,7 +33,7 @@ class FlutterImageUtils {
   ///   quality: 85,
   /// );
   /// /* ... */
-  /// MemoryImage(Uint8List.fromList(cropped))
+  /// MemoryImage(cropped)
   /// ```
   static Future<Uint8List> cropImage(
     List<int> image, {
@@ -83,7 +81,27 @@ class FlutterImageUtils {
     return _convertDynamic(result);
   }
 
-  // TODO: add docs
+  /// Returns `Future<Uint8List>` that contains bytes of proportionally scaled image.
+  ///
+  /// `maxSize` param controls max size to which image will be scaled
+  /// E.g. if the image has size 1400x700 pixels and `maxSize` is set to 1200
+  /// the size of the resulting image will be 1200x600
+  /// Must not be null or negative.
+  ///
+  /// `quality` param controls the quality of the output image. Must be
+  /// positive number between `0` and `100`.
+  ///
+  /// ```dart
+  /// import 'dart:typed_data';
+  /// /* ... */
+  /// final sized = await FlutterImageCrop.resizeImageToMax(
+  ///   imgBytes,
+  ///   maxSize: 1200,
+  ///   quality: 85,
+  /// );
+  /// /* ... */
+  /// MemoryImage(sized)
+  /// ```
   static Future<Uint8List> resizeImageToMax(
     List<int> image, {
     int maxSize,
@@ -118,7 +136,26 @@ class FlutterImageUtils {
     return _convertDynamic(result);
   }
 
-  // TODO: add docs
+  /// Returns `Future<Uint8List>` that contains bytes of resized image.
+  ///
+  /// `destWidth` and `destHeight` params control dimensions to which image will be scaled
+  /// Must not be null or negative.
+  ///
+  /// `quality` param controls the quality of the output image. Must be
+  /// positive number between `0` and `100`.
+  ///
+  /// ```dart
+  /// import 'dart:typed_data';
+  /// /* ... */
+  /// final sized = await FlutterImageCrop.resizeImage(
+  ///   imgBytes,
+  ///   destWidth: 1200,
+  ///   destWidth: 600,
+  ///   quality: 85,
+  /// );
+  /// /* ... */
+  /// MemoryImage(sized)
+  /// ```
   static Future<Uint8List> resizeImage(
     List<int> image, {
     int destWidth,
@@ -157,7 +194,25 @@ class FlutterImageUtils {
     return _convertDynamic(result);
   }
 
-  // TODO: add docs
+  /// Returns `Future<Uint8List>` that contains bytes of rotated image.
+  ///
+  /// `angle` param controls angle by which image will be rotated
+  /// Must not be null or negative.
+  ///
+  /// `quality` param controls the quality of the output image. Must be
+  /// positive number between `0` and `100`.
+  ///
+  /// ```dart
+  /// import 'dart:typed_data';
+  /// /* ... */
+  /// final rotated = await FlutterImageCrop.rotateImage(
+  ///   imgBytes,
+  ///   angle: 90,
+  ///   quality: 85,
+  /// );
+  /// /* ... */
+  /// MemoryImage(rotated)
+  /// ```
   static Future<Uint8List> rotateImage(
     List<int> image, {
     int angle,

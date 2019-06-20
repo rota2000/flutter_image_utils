@@ -18,5 +18,5 @@ dev_dependencies:
 
 flutter:
   plugin:
-    androidPackage: com.vanelizarov.flutter_image_utils.flutter_image_utils
+    androidPackage: com.vanelizarov.flutter_image_utils
     pluginClass: FlutterImageUtilsPlugin
