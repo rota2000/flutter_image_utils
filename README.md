@@ -12,7 +12,7 @@ Crops image as native plugin, both iOS and Android
 # pubspec.yaml
 
 dependencies:
-  flutter_image_utils: ^0.2.4
+  flutter_image_utils: ^0.1.0
 ```
 
 ```dart
