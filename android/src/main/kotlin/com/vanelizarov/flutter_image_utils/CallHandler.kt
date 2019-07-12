@@ -1,6 +1,8 @@
 package com.vanelizarov.flutter_image_utils
 
+import android.app.Activity
 import android.graphics.BitmapFactory
+import android.util.Log
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import java.util.concurrent.Executors
@@ -11,7 +13,7 @@ class CallHandler(var call: MethodCall, var result: MethodChannel.Result) {
         private val executor = Executors.newFixedThreadPool(5)
     }
 
-    fun handle() {
+    fun handle(activity: Activity) {
         executor.execute {
             when (call.method) {
                 "crop" -> {
@@ -27,9 +29,13 @@ class CallHandler(var call: MethodCall, var result: MethodChannel.Result) {
                         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.count())
                         val exifRotation = Exif.getRotationDegrees(bytes)
 
-                        result.success(bitmap.crop(x, y, width, height, exifRotation).toByteArray(quality))
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(bitmap.crop(x, y, width, height, exifRotation).toByteArray(quality))
+                        })
                     } catch (e: Exception) {
-                        result.success(null)
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(null)
+                        })
                     }
                 }
 
@@ -43,9 +49,14 @@ class CallHandler(var call: MethodCall, var result: MethodChannel.Result) {
                         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.count())
                         val exifRotation = Exif.getRotationDegrees(bytes)
 
-                        result.success(bitmap.rotate(angle + exifRotation).toByteArray(quality))
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(bitmap.rotate(angle + exifRotation).toByteArray(quality))
+                        })
+
                     } catch (e: Exception) {
-                        result.success(null)
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(null)
+                        })
                     }
                 }
 
@@ -60,9 +71,13 @@ class CallHandler(var call: MethodCall, var result: MethodChannel.Result) {
                         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.count())
                         val exifRotation = Exif.getRotationDegrees(bytes)
 
-                        result.success(bitmap.resize(destWidth, destHeight, exifRotation).toByteArray(quality))
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(bitmap.resize(destWidth, destHeight, exifRotation).toByteArray(quality))
+                        })
                     } catch (e: Exception) {
-                        result.success(null)
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(null)
+                        })
                     }
                 }
 
@@ -76,9 +91,14 @@ class CallHandler(var call: MethodCall, var result: MethodChannel.Result) {
                         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.count())
                         val exifRotation = Exif.getRotationDegrees(bytes)
 
-                        result.success(bitmap.resizeToMax(maxSize, exifRotation).toByteArray(quality))
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(bitmap.resizeToMax(maxSize, exifRotation).toByteArray(quality))
+                        })
                     } catch (e: Exception) {
-                        result.success(null)
+                        activity.runOnUiThread(java.lang.Runnable {
+                            result.success(null)
+                        })
+
                     }
                 }
             }
